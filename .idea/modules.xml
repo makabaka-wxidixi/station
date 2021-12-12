@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/javaE1/javaE1.iml" filepath="$PROJECT_DIR$/javaE1/javaE1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaE2/javaE2.iml" filepath="$PROJECT_DIR$/javaE2/javaE2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaE3/javaE3.iml" filepath="$PROJECT_DIR$/javaE3/javaE3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaE4/javaE4.iml" filepath="$PROJECT_DIR$/javaE4/javaE4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaE5/javaE5.iml" filepath="$PROJECT_DIR$/javaE5/javaE5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/station/station.iml" filepath="$PROJECT_DIR$/station/station.iml" />
+    </modules>
+  </component>
+</project>

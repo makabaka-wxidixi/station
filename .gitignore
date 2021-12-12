@@ -1,0 +1,4 @@
+# Project exclude paths
+/javaE5/target/
+/out/
+/station/target/

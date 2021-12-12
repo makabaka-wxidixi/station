@@ -1,0 +1,87 @@
+#login {
+    width: 400px;
+    height: 300px;
+    background-color: rgba(88, 88, 89, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url("../风景.jpg") no-repeat left center;
+    background-size: cover;
+}
+
+#login_form {
+
+}
+
+#title {
+    color: white;
+}
+
+#password {
+    margin-top: 5px;
+}
+
+#user {
+    margin-bottom: 5px;
+}
+
+#tips1 {
+    position: fixed;
+    left: 260px;
+    top: 84px;
+}
+
+.tips{
+    text-align: center;
+    font-size: 15px;
+    width: 125px;
+    height: 5px;
+    color: #e7db0a;
+}
+
+#tips2 {
+    position: fixed;
+    left: 260px;
+    top: 145px;
+}
+
+.input {
+    background: rgba(154, 142, 142, 0.76);
+    border-radius: 10px;
+    color: #12443b;
+}
+
+.input-button {
+    background: #439cc5;
+    margin: 3px;
+    border-radius: 10px;
+}
+
+#login h1 {
+    text-align: center;
+}
+
+#login p {
+    color: white;
+    font-size: 17px;
+    /*height: 25px;*/
+}
+
+#login p, div {
+    text-align: center;
+}
+
+#subDiv a {
+    color: #15d318;
+    text-decoration: none;
+}

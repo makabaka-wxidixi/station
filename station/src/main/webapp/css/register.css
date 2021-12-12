@@ -1,0 +1,80 @@
+#bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url("../风景.jpg") no-repeat left center;
+    background-size: cover;
+}
+
+.tips{
+    font-size: 15px;
+    width: 130px;
+    height: 15px;
+    text-align: center;
+    color: #e7db0a;
+    position: fixed;
+    left: 260px;
+}
+#tips1{
+    top: 70px;
+}
+#tips2{
+    top: 135px;
+}
+#tips3{
+    top:200px;
+}
+#tips4{
+    top:265px;
+}
+
+#bg #register{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(88, 88, 89, 0.5);
+    width: 425px;
+    height: 450px;
+    border-radius: 10px;
+}
+#bg #register div{
+    margin-top: 30px;
+    text-align: center;
+}
+.bg_input{
+    height: 30px;
+    width: 220px;
+    border-radius: 10px;
+    background: rgba(154, 142, 142, 0.76);
+    color: #12443b;
+    /*color: rgba(215, 183, 21, 0.96);*/
+    font-size: 15px;
+}
+label{
+    color: white;
+    font-size: 17px;
+}
+h1{
+    color: white;
+    text-align: center;
+}
+#confirm_span{
+    margin-right: 15px;
+}
+#email_span{
+    margin-right: 34px;
+}
+
+#sign_on input{
+    background: #439cc5;
+    height: 30px;
+    width: 320px;
+    border-radius: 3px;
+}
+a{
+    color: #15d318;
+    text-decoration: none;
+}

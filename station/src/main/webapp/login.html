@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/login.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div id="bg">
+    <div id="login">
+        <br/>
+        <h1 id="title">LOGIN IN</h1>
+        <form id="login_form" action="loginUser" method="post">
+            <span id="tips1" class="tips" style="visibility: hidden"></span>
+            <p>username：<input name="username" id="user" value="username" class="input" style="height:30px;width:240px"
+                               type="text"/></p>
+            <span id="tips2" class="tips" style="visibility: hidden"></span>
+            <p>password：<input name="password" id="password" class="input" style="height:30px;width:240px"
+                               value="password"
+                               type="password"/>
+            </p>
+            <div id="subDiv">
+                <input id="submit" type="submit" style="height:30px;width:90px" class="input-button" value="sign up"/>
+                <input type="reset" id="reset" style="height:30px;width:90px" value="reset" class="input-button"/>
+                <a href="register.html">没有账号？点击注册</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="js/axios.min.js"></script>
+<script>
+    //reset
+    document.getElementById("reset").onclick = function () {
+        for (const elementsByClassNameElement of document.getElementsByClassName("tips")) {
+            elementsByClassNameElement.style.visibility = "hidden";
+        }
+    }
+
+    /*
+    密码操作
+    */
+    let tipPass = document.getElementById("tips2");
+    let inputPassword = document.getElementById("password");
+
+    let funPassword = function () {
+        let password = inputPassword.value;
+        let partn = /^[\w]{6,20}$/;
+        return partn.test(password);
+    }
+    inputPassword.onclick = function () {
+        tipPass.style.visibility = "hidden";
+    }
+    inputPassword.onblur = function () {
+        if (!funPassword()) {
+            tipPass.innerText = "密码格式有误";
+            tipPass.style.visibility = "visible";
+            return false;
+        } else {
+            tipPass.style.visibility = "hidden";
+            return true;
+        }
+    };
+
+    /*
+    用户名操作
+     */
+    let tipUsername = document.getElementById("tips1");
+    let inputUsername = document.getElementById("user");
+    let flag = false;//标记用户名是否存在
+    let funUsernameFormat = function (username) {
+        //1-30位大小写字母构成
+        let partn = /^[a-zA-Z]{1,30}$/;
+        return partn.test(username);
+    }
+    inputUsername.onclick = function () {
+        tipUsername.style.visibility = "hidden";
+    }
+    inputUsername.onblur = function () {
+        let username = inputUsername.value
+        if (!funUsernameFormat(username)) {
+            tipUsername.innerText = "用户名格式有误";
+            tipUsername.style.visibility = "visible";
+            return false;
+        }
+        axios.post("http://localhost:8080/station/checkNameServlet", "username=" + username).then(function (rees) {
+            if (rees.data) {
+                tipUsername.style.visibility = "hidden";
+                return true;
+            } else {
+                tipUsername.innerText = "用户名不存在";
+                tipUsername.style.visibility = "visible";
+                return false;
+            }
+        })
+    };
+
+    //submit
+    document.getElementById("submit").onclick = function () {
+        let username = inputUsername.value;
+        funUsernameAjaxPost(username);
+        if (!funUsernameFormat(username) || !flag) {
+            return false;
+        }
+        if (!funPassword()) {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

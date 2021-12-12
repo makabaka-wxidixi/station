@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/register.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="bg">
+    <div id="register">
+        <h1>REGISTER</h1>
+        <form action="registerUser" method="post">
+            <span id="tips1" class="tips" style="visibility: hidden"></span>
+
+            <div><label for="username">username：</label><input class="bg_input" type="text" id="username"
+                                                               name="username"
+                                                               value="username">
+
+                <span id="tips2" class="tips" style="visibility: hidden"></span>
+
+            </div>
+            <div><label for="password">password：</label><input class="bg_input" type="password" id="password"
+                                                               name="password"
+                                                               value="password"></div>
+
+            <span id="tips3" class="tips" style="visibility: hidden"></span>
+
+            <div><label for="confirm"><span id="confirm_span">confirm：</span></label><input class="bg_input"
+                                                                                            type="password"
+                                                                                            id="confirm"
+                                                                                            name="confirm"
+                                                                                            value="password">
+            </div>
+
+            <span id="tips4" class="tips" style="visibility: hidden"></span>
+
+            <div><label for="confirm"><span id="email_span">email：</span></label><input class="bg_input" type="text"
+                                                                                        id="email" name="email"
+                                                                                        value="email"/></div>
+
+            <div id="sign_on">
+
+                <input type="submit" id="but_reg" value="sign on"/>
+                <br/><br/>
+
+                <a href="login.html">已有账号？点击登录</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script src="js/axios.min.js"></script>
+<script type="text/javascript">
+
+    //电子邮件
+
+    let tipEmail = document.getElementById("tips4");
+    let inputEmail = document.getElementById("email");
+    /**
+     * 判断email格式是否符合要求
+     * @param email
+     * @returns {boolean}
+     */
+    let funEmail = function () {
+        let email = inputEmail.value;
+        let partn = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,5}$/;
+        return partn.test(email);
+    }
+    inputEmail.onclick = function () {
+        tipEmail.style.visibility = "hidden";
+    }
+    inputEmail.onblur = function () {
+        if (!funEmail()) {
+            tipEmail.innerText = "邮箱格式错误";
+            tipEmail.style.visibility = "visible";
+        } else {
+            tipEmail.innerText = "√";
+            tipEmail.style.visibility = "visible";
+        }
+    };
+
+    //密码确认
+
+
+    let tipConfirm = document.getElementById("tips3");
+    let inputConfirm = document.getElementById("confirm");
+    /**
+     * 判断两次密码是否相等
+     * @returns {boolean}
+     */
+    let funConfirm = function () {
+        let confirm = inputConfirm.value;
+        let password = document.getElementById("password").value;
+        return confirm === password;
+    }
+    inputConfirm.onclick = function () {
+        tipConfirm.style.visibility = "hidden";
+    }
+    inputConfirm.onblur = function () {
+        if (!funConfirm()) {
+            tipConfirm.innerText = "两次密码不一致";
+            tipConfirm.style.visibility = "visible";
+        } else {
+            tipConfirm.innerText = "√";
+            tipConfirm.style.visibility = "visible";
+        }
+    };
+
+    //密码
+
+    let tipPass = document.getElementById("tips2");
+    let inputPassword = document.getElementById("password");
+    /**
+     * 判断密码格式是否符合要求
+     * @returns {boolean}
+     */
+    let funPassword = function () {
+        let password = inputPassword.value;
+        let partn = /^[\w]{6,20}$/;
+        return partn.test(password);
+    }
+    inputPassword.onclick = function () {
+        tipPass.style.visibility = "hidden";
+    }
+    inputPassword.onblur = function () {
+        if (!funPassword()) {
+            tipPass.innerText = "密码格式有误";
+            tipPass.style.visibility = "visible";
+        } else {
+            tipPass.innerText = "√";
+            tipPass.style.visibility = "visible";
+        }
+    };
+
+    //用户名
+
+    let tipUsername = document.getElementById("tips1");
+    let inputUsername = document.getElementById("username");
+    let flag = false;
+    /**
+     * 判断用户名格式是否符合要求
+     * @param username
+     * @returns {boolean}
+     */
+    let funUsernameFormat = function (username) {
+        let partn = /^[a-zA-Z]{1,30}$/;
+        return partn.test(username);
+    }
+    inputUsername.onclick = function () {
+        tipUsername.style.visibility = "hidden";
+    }
+    inputUsername.onblur = function () {
+        let username = inputUsername.value;
+        if (!funUsernameFormat(username)) {
+            tipUsername.innerText = "用户名有误";
+            tipUsername.style.visibility = "visible";
+        }
+        axios.post("http://localhost:8080/station/checkNameServlet", "username=" + username).then(function (rees) {
+            if (rees.data) {
+                flag = true;
+                tipUsername.innerText = "用户名已存在";
+                tipUsername.style.visibility = "visible";
+            } else {
+                flag = false;
+                tipUsername.innerText = "√";
+                tipUsername.style.visibility = "visible";
+            }
+        })
+    };
+
+    //提交按钮
+
+    let register = document.getElementById("but_reg");
+    register.onclick = function () {
+        funUsernameAjaxPost(inputUsername.value)
+        if (!funUsernameFormat(inputUsername.value) || flag) {
+            return false;
+        }
+        if (!funPassword()) {
+            return false;
+        }
+        if (!funConfirm()) {
+            return false;
+        }
+        if (!funEmail()) {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
