@@ -7,6 +7,7 @@ import com.ailik.station.service.servInterface.PhoneService;
 import com.ailik.station.utils.JdbcUtils;
 
 import java.sql.Connection;
+import java.sql.JDBCType;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -138,7 +139,7 @@ public class PhoneServiceImpl implements PhoneService {
             return phoneDao.getAllPhoneByHotDesc(connection);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             JdbcUtils.closeResource(connection);
         }
         return null;
@@ -152,9 +153,117 @@ public class PhoneServiceImpl implements PhoneService {
             return phoneDao.getAllPhone(connection);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             JdbcUtils.closeResource(connection);
         }
         return null;
+    }
+
+    @Override
+    public boolean addNewPhone(Phone phone) {
+        String series = phone.getSeries();
+        String model = phone.getModel();
+        float price = phone.getPrice();
+        String brand = phone.getBrand();
+        String describe = phone.getDescribe();
+        Connection connection = null;
+        try {
+            connection = JdbcUtils.getConnection();
+            return phoneDao.addNewPhone(connection, series, model, price, brand, describe);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtils.closeResource(connection);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deletePhoneByModel(String model) {
+        Connection connection = null;
+        try {
+            connection = JdbcUtils.getConnection();
+            return phoneDao.deletePhoneByModel(connection, model);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtils.closeResource(connection);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deletePhoneByBrand(String brand) {
+        Connection connection = null;
+        try {
+            connection = JdbcUtils.getConnection();
+            return phoneDao.deletePhoneByModel(connection, brand);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtils.closeResource(connection);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deletePhoneBySeries(String series) {
+        Connection connection = null;
+        try {
+            connection = JdbcUtils.getConnection();
+            return phoneDao.deletePhoneByModel(connection, series);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtils.closeResource(connection);
+        }
+        return false;
+    }
+
+    @Override
+    public Phone getPhoneById(int id) {
+        Connection connection = null;
+        try {
+            connection = JdbcUtils.getConnection();
+            return phoneDao.getPhoneById(connection, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtils.closeResource(connection);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean updatePhoneDataById(int id, Phone phone) {
+        String series = phone.getSeries();
+        String model = phone.getModel();
+        float price = phone.getPrice();
+        String brand = phone.getBrand();
+        String describe = phone.getDescribe();
+        Connection connection = null;
+        try {
+            connection = JdbcUtils.getConnection();
+            return phoneDao.updatePhoneById(connection, series, model, price, brand, describe, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtils.closeResource(connection);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deletePhoneById(int id) {
+        Connection connection = null;
+        try {
+            connection = JdbcUtils.getConnection();
+            return phoneDao.deletePhoneById(connection, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtils.closeResource(connection);
+        }
+        return false;
     }
 }

@@ -20,7 +20,7 @@ public class ShowPhone extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Phone> allPhone = phoneService.getAllPhone();
         request.setAttribute("phoneList", allPhone);
-        request.getRequestDispatcher("/hello.jsp").forward(request, response);
+        request.getRequestDispatcher("/showPhone.jsp").forward(request, response);
     }
 
     @Override

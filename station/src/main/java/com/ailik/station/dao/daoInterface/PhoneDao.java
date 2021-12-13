@@ -43,6 +43,24 @@ public interface PhoneDao {
     //按照热度排列商品顺序——降序
     List<Phone> getAllPhoneByHotDesc(Connection connection) throws SQLException;
 
-    //补货（补充新手机）
+    //添加新的手机
+    boolean addNewPhone(Connection connection, Object... args) throws SQLException;
 
+    //根据型号删除已有的手机
+    boolean deletePhoneByModel(Connection connection, String model) throws SQLException;
+
+    //根据品牌删除已有的手机
+    boolean deletePhoneByBrand(Connection connection, String brand) throws SQLException;
+
+    //根据系列删除已有的手机
+    boolean deletePhoneBySeries(Connection connection, String series) throws SQLException;
+
+    //根据型号修改数据
+    boolean updatePhoneById(Connection connection, String series, String model, float price, String brand, String describe, int id) throws SQLException;
+
+    //根据id查询手机
+    Phone getPhoneById(Connection connection, int id) throws SQLException;
+
+    //根据id删除手机
+    boolean deletePhoneById(Connection connection, int id) throws SQLException;
 }

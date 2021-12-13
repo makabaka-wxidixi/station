@@ -47,4 +47,29 @@
         <servlet-name>AddNewPhones</servlet-name>
         <url-pattern>/addNewPhones</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeletePhone</servlet-name>
+        <servlet-class>com.ailik.station.web.servlet.goods.DeletePhone</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletePhone</servlet-name>
+        <url-pattern>/deletePhone</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowSelectedPhoneData</servlet-name>
+        <servlet-class>com.ailik.station.web.servlet.goods.ShowSelectedPhoneData</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePhoneData</servlet-name>
+        <servlet-class>com.ailik.station.web.servlet.goods.UpdatePhoneData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdatePhoneData</servlet-name>
+        <url-pattern>/updatePhoneData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowSelectedPhoneData</servlet-name>
+        <url-pattern>/showSelectedPhoneData</url-pattern>
+    </servlet-mapping>
 </web-app>

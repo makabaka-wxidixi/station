@@ -8,11 +8,22 @@ package com.ailik.station.pojo.goods;
 public class Phone {
     private int id;
     private int hot;
+    private String series;
     private String model;
     private float price;
-    private String series;
     private String brand;
     private String describe;
+
+    public Phone(String series, String model, float price, String brand, String describe) {
+        this.series = series;
+        this.model = model;
+        this.price = price;
+        this.brand = brand;
+        this.describe = describe;
+    }
+
+
+
 
     public Phone(int id, int hot, String model, float price, String series, String brand, String describe) {
         this.id = id;

@@ -3,7 +3,12 @@ table {
     border: 1px black solid;
     border-collapse: collapse;
 }
-td,th{
+
+td, th {
     border: 1px black solid;
+    text-align: center;
+}
+
+.handle {
     text-align: center;
 }
