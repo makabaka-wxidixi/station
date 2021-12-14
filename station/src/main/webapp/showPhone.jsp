@@ -13,6 +13,7 @@
     <link href="css/showPhone.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div style="text-align: center"><h1>${username}，欢迎您</h1></div>
 <div class="handle"><input id="add" type="button" value="上架"></div>
 <br/>
 <table align="center">
@@ -33,9 +34,7 @@
             <td>${good.price}</td>
             <td>${good.brand}</td>
             <td>${good.describe}</td>
-            <td><a href="/station/showSelectedPhoneData?id=${good.id}">修改</a>/<a id="delete"
-                                                                                 href="javascript:deleteBtn(123)">删除</a>
-            </td>
+            <td><input type="button" value="修改" onclick="updateBtn('${good.id}')">/<input type="button"  value="删除" onclick="deleteBtn('${good.model}','${good.id}')" id="delete"/></td>
         </tr>
     </c:forEach>
 </table>
@@ -46,17 +45,16 @@
         location.href = "/station/addPhone.jsp";
     }
 
-    let deleteA = document.getElementById("delete");
-    deleteA.onclick = function () {
-        confirm("确定要删除吗?");
-        return false;
-        // console.log(event.target);
-        // return false;
+    function updateBtn(productId) {
+        if (confirm("确定要修改" + productId + "吗?")) {
+            location.href = "/station/showSelectedPhoneData?id=" + productId;
+        }
     }
 
-    function deleteBtn(productName){
-        alert(productName);
-        location.href = "...";
+    function deleteBtn(productName, id) {
+        if (confirm("确定要删除" + productName + "吗?")) {
+            location.href = "/station/deletePhone?id=" + id;
+        }
     }
 </script>
 

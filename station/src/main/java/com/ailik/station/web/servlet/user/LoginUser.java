@@ -23,9 +23,21 @@ public class LoginUser extends HttpServlet {
         System.out.println(password);
         if (userService.existUserByUsernamePassword(username, password)) {
             System.out.println("登陆成功");
-            request.getRequestDispatcher("/showPhone").forward(request, response);
+            String checkbox = request.getParameter("checkbox");
+            if ("1".equals(checkbox)) {//说明用户确定记住密码
+                //创建cookie——记住我
+                Cookie cookie1 = new Cookie("username", username);
+                Cookie cookie2 = new Cookie("password", password);
+                response.addCookie(cookie1);
+                response.addCookie(cookie2);
+            }
+            //设置session——xxx，欢迎您
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(contextPath + "/showPhone");//请求重定向
         } else {
-            request.getRequestDispatcher("/login.html").forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 
