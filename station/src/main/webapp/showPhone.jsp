@@ -34,7 +34,11 @@
             <td>${good.price}</td>
             <td>${good.brand}</td>
             <td>${good.describe}</td>
-            <td><input type="button" value="修改" onclick="updateBtn('${good.id}')">/<input type="button"  value="删除" onclick="deleteBtn('${good.model}','${good.id}')" id="delete"/></td>
+            <td><input type="button" value="修改" onclick="updateBtn('${good.model}','${good.id}')">/<input type="button"
+                                                                                                          value="删除"
+                                                                                                          onclick="deleteBtn('${good.model}','${good.id}')"
+                                                                                                          id="delete"/>
+            </td>
         </tr>
     </c:forEach>
 </table>
@@ -45,8 +49,8 @@
         location.href = "/station/addPhone.jsp";
     }
 
-    function updateBtn(productId) {
-        if (confirm("确定要修改" + productId + "吗?")) {
+    function updateBtn(productName, productId) {
+        if (confirm("确定要修改" + productName + "吗?")) {
             location.href = "/station/showSelectedPhoneData?id=" + productId;
         }
     }

@@ -35,8 +35,12 @@ public class LoginUser extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             String contextPath = request.getContextPath();
+            System.out.println(contextPath);
             response.sendRedirect(contextPath + "/showPhone");//请求重定向
         } else {
+            //登录失败
+            //提示用户密码错误
+            request.setAttribute("password_error", "密码错误!");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
